@@ -12,12 +12,7 @@ def index(page=1):
     response = requests.get(SPACEX_API_URL)
     if response.status_code == 200:
         launches = response.json()
-        total_launches = len(launches)
-        start = (page - 1) * ITEMS_PER_PAGE
-        end = start + ITEMS_PER_PAGE
-        paginated_launches = launches[start:end]
-        total_pages = (total_launches + ITEMS_PER_PAGE - 1) // ITEMS_PER_PAGE
-        return render_template('index.html', launches=paginated_launches, page=page, total_pages=total_pages)
+        return render_template('index.html', launches=launches, page=page, total_pages=50)
     else:
         return "Could not fetch launches", 500
 
