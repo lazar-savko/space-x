@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ launch.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>{{ launch.name }}</h1>
+        {% if youtube_link %}
+        <iframe width="560" height="315" src="{{ youtube_link }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {% else %}
+    <p>No video available for this launch.</p>
+    {% endif %}
+    <div class="launch-details">
+        <p><strong>Date:</strong> {{ launch.date_utc }}</p>
+        <p><strong>Details:</strong> {{ launch.details or 'No details available' }}</p>
+    </div>
+    <a href="/">Back to Launches</a>
+</body>
+</html>
