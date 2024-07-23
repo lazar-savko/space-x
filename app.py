@@ -21,11 +21,7 @@ def launch(launch_id):
     response = requests.get(f"{SPACEX_API_URL}{launch_id}")
     if response.status_code == 200:
         launch_data = response.json()
-        youtube_link = None
-        if 'links' in launch_data and 'youtube_id' in launch_data['links']:
-            youtube_id = launch_data['links']['youtube_id']
-            youtube_link = f"https://www.youtube.com/embed/{youtube_id}"
-        return render_template('launch.html', launch=launch_data, youtube_link=youtube_link)
+        return render_template('launch.html', launch=launch_data, youtube_link=None)
     else:
         return "Launch not found", 404
 
